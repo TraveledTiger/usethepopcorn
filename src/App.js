@@ -320,6 +320,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   console.log(title, year);
 
+  // load movie details on selectedId of movie
   useEffect(
     function () {
       async function getMovieDetails() {
@@ -334,6 +335,18 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       getMovieDetails();
     },
     [selectedId],
+  );
+
+  // change document title to movie title
+  useEffect(
+    function () {
+      document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = "usePopcorn";
+      };
+    },
+    [title],
   );
 
   return (
